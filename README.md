@@ -1,0 +1,1 @@
+## Ansible install of OpenShift on Redhat EL 7.5
