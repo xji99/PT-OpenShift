@@ -13,8 +13,18 @@ Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
 
   config.vm.define "controlbox", primary: true do |h|
-    h.vm.hostname = "controlbox"
+    h.vm.hostname = "controlbox.foo.com"
     h.vm.network "private_network", ip: "192.168.3.10"
+    h.vm.provision :shell, path: "control.sh"
+    h.vm.provider :virtualbox do |vb|
+         vb.customize ["modifyvm", :id, "--memory", "1024"]
+         vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
+  end
+
+  config.vm.define "master" do |h|
+    h.vm.hostname = "master.foo.com"
+    h.vm.network "private_network", ip: "192.168.3.100"
     h.vm.provision :shell, path: "master.sh"
     h.vm.provider :virtualbox do |vb|
          vb.customize ["modifyvm", :id, "--memory", "8096"]
@@ -22,15 +32,9 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  config.vm.define "openshiftMaster" do |h|
-    h.vm.hostname = "master"
+  config.vm.define "node1" do |h|
+    h.vm.hostname = "node1.foo.com"
     h.vm.network "private_network", ip: "192.168.3.101"
-    h.vm.provision :shell, path: "node.sh"
-  end
-
-  config.vm.define "openshiftNode1" do |h|
-    h.vm.hostname = "node1"
-    h.vm.network "private_network", ip: "192.168.3.111"
     h.vm.provision :shell, path: "node.sh"
   end
 end
