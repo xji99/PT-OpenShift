@@ -1,0 +1,177 @@
+admissionConfig:
+  pluginConfig:
+    BuildDefaults:
+      configuration:
+        apiVersion: v1
+        env: []
+        kind: BuildDefaultsConfig
+        resources:
+          limits: {}
+          requests: {}
+    BuildOverrides:
+      configuration:
+        apiVersion: v1
+        kind: BuildOverridesConfig
+    openshift.io/ImagePolicy:
+      configuration:
+        apiVersion: v1
+        executionRules:
+        - matchImageAnnotations:
+          - key: images.openshift.io/deny-execution
+            value: 'true'
+          name: execution-denied
+          onResources:
+          - resource: pods
+          - resource: builds
+          reject: true
+          skipOnResolutionFailure: true
+        kind: ImagePolicyConfig
+apiLevels:
+- v1
+apiVersion: v1
+controllerConfig:
+  election:
+    lockName: openshift-master-controllers
+  serviceServingCert:
+    signer:
+      certFile: service-signer.crt
+      keyFile: service-signer.key
+controllers: '*'
+corsAllowedOrigins:
+  # anchor with start (\A) and end (\z) of the string, make the check case insensitive ((?i)) and escape hostname
+  - (?i)//127\.0\.0\.1(:|\z)
+  - (?i)//localhost(:|\z)
+  - (?i)//10\.0\.2\.15(:|\z)
+  - (?i)//kubernetes\.default(:|\z)
+  - (?i)//kubernetes\.default\.svc\.cluster\.local(:|\z)
+  - (?i)//kubernetes(:|\z)
+  - (?i)//openshift\.default(:|\z)
+  - (?i)//openshift\.default\.svc(:|\z)
+  - (?i)//172\.30\.0\.1(:|\z)
+  - (?i)//openshift\.default\.svc\.cluster\.local(:|\z)
+  - (?i)//kubernetes\.default\.svc(:|\z)
+  - (?i)//openshift(:|\z)
+  - (?i)//master\.foo\.com(:|\z)
+dnsConfig:
+  bindAddress: 0.0.0.0:8053
+  bindNetwork: tcp4
+etcdClientInfo:
+  ca: master.etcd-ca.crt
+  certFile: master.etcd-client.crt
+  keyFile: master.etcd-client.key
+  urls:
+    - https://master.foo.com:2379
+etcdStorageConfig:
+  kubernetesStoragePrefix: kubernetes.io
+  kubernetesStorageVersion: v1
+  openShiftStoragePrefix: openshift.io
+  openShiftStorageVersion: v1
+imageConfig:
+  format: openshift/origin-${component}:${version}
+  latest: False
+kind: MasterConfig
+kubeletClientInfo:
+  ca: ca-bundle.crt
+  certFile: master.kubelet-client.crt
+  keyFile: master.kubelet-client.key
+  port: 10250
+kubernetesMasterConfig:
+  apiServerArguments: 
+    storage-backend:
+    - etcd3
+    storage-media-type:
+    - application/vnd.kubernetes.protobuf
+  controllerArguments: 
+  masterCount: 1
+  masterIP: 10.0.2.15
+  podEvictionTimeout: 
+  proxyClientInfo:
+    certFile: master.proxy-client.crt
+    keyFile: master.proxy-client.key
+  schedulerArguments: 
+  schedulerConfigFile: /etc/origin/master/scheduler.json
+  servicesNodePortRange: ""
+  servicesSubnet: 172.30.0.0/16
+  staticNodeNames: []
+masterClients:
+  externalKubernetesClientConnectionOverrides:
+    acceptContentTypes: application/vnd.kubernetes.protobuf,application/json
+    contentType: application/vnd.kubernetes.protobuf
+    burst: 400
+    qps: 200
+  externalKubernetesKubeConfig: ""
+  openshiftLoopbackClientConnectionOverrides:
+    acceptContentTypes: application/vnd.kubernetes.protobuf,application/json
+    contentType: application/vnd.kubernetes.protobuf
+    burst: 600
+    qps: 300
+  openshiftLoopbackKubeConfig: openshift-master.kubeconfig
+masterPublicURL: https://master.foo.com:8443
+networkConfig:
+  clusterNetworkCIDR: 10.128.0.0/14
+  hostSubnetLength: 9
+  clusterNetworks:
+  - cidr: 10.128.0.0/14
+    hostSubnetLength: 9
+  networkPluginName: redhat/openshift-ovs-subnet
+# serviceNetworkCIDR must match kubernetesMasterConfig.servicesSubnet
+  serviceNetworkCIDR: 172.30.0.0/16
+  externalIPNetworkCIDRs: 
+  - 0.0.0.0/0
+oauthConfig:
+  assetPublicURL: https://master.foo.com:8443/console/
+  grantConfig:
+    method: auto
+  identityProviders:
+  - challenge: true
+    login: true
+    mappingMethod: claim
+    name: allow_all
+    provider:
+      apiVersion: v1
+      kind: AllowAllPasswordIdentityProvider
+  masterCA: ca-bundle.crt
+  masterPublicURL: https://master.foo.com:8443
+  masterURL: https://master.foo.com:8443
+  sessionConfig:
+    sessionMaxAgeSeconds: 3600
+    sessionName: ssn
+    sessionSecretsFile: /etc/origin/master/session-secrets.yaml
+  tokenConfig:
+    accessTokenMaxAgeSeconds: 86400
+    authorizeTokenMaxAgeSeconds: 500
+pauseControllers: false
+policyConfig:
+  bootstrapPolicyFile: /etc/origin/master/policy.json
+  openshiftInfrastructureNamespace: openshift-infra
+  openshiftSharedResourcesNamespace: openshift
+projectConfig:
+  defaultNodeSelector: "node-role.kubernetes.io/compute=true"
+  projectRequestMessage: ""
+  projectRequestTemplate: ""
+  securityAllocator:
+    mcsAllocatorRange: "s0:/2"
+    mcsLabelsPerProject: 5
+    uidAllocatorRange: "1000000000-1999999999/10000"
+routingConfig:
+  subdomain:  "router.default.svc.cluster.local"
+serviceAccountConfig:
+  limitSecretReferences: False
+  managedNames:
+  - default
+  - builder
+  - deployer
+  masterCA: ca-bundle.crt
+  privateKeyFile: serviceaccounts.private.key
+  publicKeyFiles:
+  - serviceaccounts.public.key
+servingInfo:
+  bindAddress: 0.0.0.0:8443
+  bindNetwork: tcp4
+  certFile: master.server.crt
+  clientCA: ca.crt
+  keyFile: master.server.key
+  maxRequestsInFlight: 500
+  requestTimeoutSeconds: 3600
+volumeConfig:
+  dynamicProvisioningEnabled: True

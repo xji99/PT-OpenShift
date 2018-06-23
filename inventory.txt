@@ -28,7 +28,7 @@ master.foo.com
 
 # host group for nodes, includes region info
 [nodes]
-#master.foo.com
+master.foo.com
 node1.foo.com openshift_node_labels="{'region': 'primary', 'zone': 'east'}"
 #node2.foo.com openshift_node_labels="{'region': 'primary', 'zone': 'west'}"
 #infra-node1.foo.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
