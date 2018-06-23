@@ -1,16 +1,37 @@
 #!/bin/bash
 
 
-if [ ! -f "/home/vagrant/.ssh/id_rsa" ]; then
-  ssh-keygen -t rsa -N "" -f /home/vagrant/.ssh/id_rsa
-fi
-cp /home/vagrant/.ssh/id_rsa.pub /vagrant/control.pub
+cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys
 
-cat << 'SSHEOF' > /home/vagrant/.ssh/config
-Host *
-  StrictHostKeyChecking no
-  UserKnownHostsFile=/dev/null
-SSHEOF
+yum install -y wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct
 
-chown -R vagrant:vagrant /home/vagrant/.ssh/
+yum-config-manager --add-repo https://docs.docker.com/v1.13/engine/installation/linux/repo_files/centos/docker.repo
+yum -y install docker-engine-1.13.1
+service docker start
+systemctl enable docker.service
+
+## configure DNS server on master node
+yum -y install bind
+
+
+sed -i -e "s/listen-on port 53 { 127.0.0.1; };/listen-on port 53 { any; };/" /etc/named.conf
+sed -i -e "s/allow-query     { localhost; };/allow-query     { any; };/" /etc/named.conf
+
+
+cp /vagrant/db.foo.com /etc/named/
+
+cat << 'EOF' >> /etc/named.rfc1912.zones
+zone "foo.com" {
+       type master;
+       file "/etc/named/db.foo.com";
+};
+EOF
+
+cat << 'EOF' > /etc/resolv.conf
+search foo.com
+nameserver 192.168.3.100
+EOF
+chmod a-w /etc/resolv.conf
+
+service named restart
 
