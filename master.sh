@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys
 
 yum install -y wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct
