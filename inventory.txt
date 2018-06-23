@@ -20,16 +20,17 @@ openshift_disable_check=docker_storage,memory_availability
 
 # host group for masters
 [masters]
-master.foo.com
-
+master.foo.com openshift_ip=192.168.3.100 openshift_public_ip=172.16.0.8
 # host group for etcd
 [etcd]
-master.foo.com
+master.foo.com openshift_ip=192.168.3.100
+#master.foo.com
 
 # host group for nodes, includes region info
 [nodes]
-master.foo.com
-node1.foo.com openshift_node_labels="{'region': 'primary', 'zone': 'east'}"
+master.foo.com openshift_ip=192.168.3.100
+node1.foo.com openshift_ip=192.168.3.101
+#node1.foo.com openshift_node_labels="{'region': 'primary', 'zone': 'east'}"
 #node2.foo.com openshift_node_labels="{'region': 'primary', 'zone': 'west'}"
 #infra-node1.foo.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 #infra-node2.foo.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
