@@ -15,3 +15,4 @@ search foo.com
 nameserver 192.168.3.100
 EOF
 chmod a-w /etc/resolv.conf
+subscription-manager repos --enable=rhel-7-server-extras-rpms

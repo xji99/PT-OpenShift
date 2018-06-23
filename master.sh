@@ -4,10 +4,11 @@ cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys
 
 yum install -y wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct
 
-yum-config-manager --add-repo https://docs.docker.com/v1.13/engine/installation/linux/repo_files/centos/docker.repo
-yum -y install docker-engine-1.13.1
-service docker start
-systemctl enable docker.service
+# docker is installed by openshift playbook
+#yum-config-manager --add-repo https://docs.docker.com/v1.13/engine/installation/linux/repo_files/centos/docker.repo
+#yum -y install docker-engine-1.13.1
+#service docker start
+#systemctl enable docker.service
 
 ## configure DNS server on master node
 yum -y install bind
@@ -34,3 +35,6 @@ chmod a-w /etc/resolv.conf
 
 service named restart
 
+iptables -A INPUT -p tcp --dport 53 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -I INPUT -p udp --dport 53 -j ACCEPT
+subscription-manager repos --enable=rhel-7-server-extras-rpms
