@@ -10,8 +10,7 @@ $TTL    3h
                           1h )     ; Negative caching TTL of 1 day
 ;
 
-@       IN      NS      ns1.rhel7.local.
-@       IN      NS      ns2.rhel7.local.
+@       IN      NS      controlbox.foo.com. 
 
 controlbox.foo.com.    		IN      A       192.168.3.10
 master.foo.com.    		IN      A       192.168.3.100

@@ -12,7 +12,7 @@ yum install -y wget git net-tools bind-utils yum-utils iptables-services bridge-
 
 cat << 'EOF' > /etc/resolv.conf
 search foo.com
-nameserver 192.168.3.100
+nameserver 192.168.3.10
 EOF
 chmod a-w /etc/resolv.conf
 subscription-manager repos --enable=rhel-7-server-extras-rpms
