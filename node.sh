@@ -14,5 +14,7 @@ cat << 'EOF' > /etc/resolv.conf
 search foo.com
 nameserver 192.168.3.10
 EOF
-chmod a-w /etc/resolv.conf
+
+#chmod a-w /etc/resolv.conf
+chattr +i /etc/resolv.conf
 subscription-manager repos --enable=rhel-7-server-extras-rpms

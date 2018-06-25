@@ -11,12 +11,23 @@ ansible_ssh_user=vagrant
 
 # If ansible_ssh_user is not root, ansible_become must be set to true
 ansible_become=true
+debug_level=4
 
 openshift_deployment_type=origin
-openshift_disable_check=docker_storage,memory_availability
+#openshift_disable_check=docker_storage,memory_availability
+openshift_disable_check=disk_availability,docker_storage,memory_availability,docker_image_availability
+openshift_hostname_check=false
+
+
+#osm_cluster_network_cidr=10.128.0.0/14
+#openshift_portal_net=172.30.0.0/16
+#osm_host_subnet_length=9
+#openshift_management_install_management=true
 
 # uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
-#openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+
+template_service_broker_selector={"region": "infra"}
 
 # host group for masters
 [masters]
@@ -29,8 +40,8 @@ master.foo.com openshift_ip=192.168.3.100
 
 # host group for nodes, includes region info
 [nodes]
-master.foo.com openshift_ip=192.168.3.100
-node1.foo.com openshift_ip=192.168.3.101
+master.foo.com openshift_ip=192.168.3.100 openshift_node_labels="{'region': 'primary', 'zone': 'east'}" openshift_schedulable=true
+node1.foo.com openshift_ip=192.168.3.101 openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 #node1.foo.com openshift_node_labels="{'region': 'primary', 'zone': 'east'}"
 #node2.foo.com openshift_node_labels="{'region': 'primary', 'zone': 'west'}"
 #infra-node1.foo.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}"

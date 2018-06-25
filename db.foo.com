@@ -15,4 +15,4 @@ $TTL    3h
 controlbox.foo.com.    		IN      A       192.168.3.10
 master.foo.com.    		IN      A       192.168.3.100
 node1.foo.com.    		IN      A       192.168.3.101
-node2.foo.com.    		IN      A       192.168.3.102
+*		    		IN      A       192.168.3.102

@@ -1,0 +1,548 @@
+
+PLAY [Initialization Checkpoint Start] ************************************************************************************************************
+
+TASK [Set install initialization 'In Progress'] ***************************************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.149)       0:00:00.149 *********** 
+ok: [master.foo.com]
+
+PLAY [Populate config host groups] ****************************************************************************************************************
+
+TASK [Load group name mapping variables] **********************************************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.134)       0:00:00.284 *********** 
+ok: [localhost]
+
+TASK [Evaluate groups - g_etcd_hosts or g_new_etcd_hosts required] ********************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.084)       0:00:00.368 *********** 
+skipping: [localhost]
+
+TASK [Evaluate groups - g_master_hosts or g_new_master_hosts required] ****************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.069)       0:00:00.438 *********** 
+skipping: [localhost]
+
+TASK [Evaluate groups - g_node_hosts or g_new_node_hosts required] ********************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.070)       0:00:00.509 *********** 
+skipping: [localhost]
+
+TASK [Evaluate groups - g_lb_hosts required] ******************************************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.062)       0:00:00.572 *********** 
+skipping: [localhost]
+
+TASK [Evaluate groups - g_nfs_hosts required] *****************************************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.060)       0:00:00.632 *********** 
+skipping: [localhost]
+
+TASK [Evaluate groups - g_nfs_hosts is single host] ***********************************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.056)       0:00:00.689 *********** 
+skipping: [localhost]
+
+TASK [Evaluate groups - g_glusterfs_hosts required] ***********************************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.055)       0:00:00.745 *********** 
+skipping: [localhost]
+
+TASK [Evaluate groups - Fail if no etcd hosts group is defined] ***********************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.050)       0:00:00.795 *********** 
+skipping: [localhost]
+
+TASK [Evaluate oo_all_hosts] **********************************************************************************************************************
+Sunday 24 June 2018  23:39:34 -0400 (0:00:00.055)       0:00:00.851 *********** 
+ok: [localhost] => (item=master.foo.com)
+ok: [localhost] => (item=node1.foo.com)
+
+TASK [Evaluate oo_masters] ************************************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.157)       0:00:01.008 *********** 
+ok: [localhost] => (item=master.foo.com)
+
+TASK [Evaluate oo_first_master] *******************************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.101)       0:00:01.110 *********** 
+ok: [localhost]
+
+TASK [Evaluate oo_new_etcd_to_config] *************************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.080)       0:00:01.190 *********** 
+
+TASK [Evaluate oo_masters_to_config] **************************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.048)       0:00:01.239 *********** 
+ok: [localhost] => (item=master.foo.com)
+
+TASK [Evaluate oo_etcd_to_config] *****************************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.090)       0:00:01.329 *********** 
+ok: [localhost] => (item=master.foo.com)
+
+TASK [Evaluate oo_first_etcd] *********************************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.086)       0:00:01.416 *********** 
+ok: [localhost]
+
+TASK [Evaluate oo_etcd_hosts_to_upgrade] **********************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.080)       0:00:01.496 *********** 
+ok: [localhost] => (item=master.foo.com)
+
+TASK [Evaluate oo_etcd_hosts_to_backup] ***********************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.082)       0:00:01.579 *********** 
+ok: [localhost] => (item=master.foo.com)
+
+TASK [Evaluate oo_nodes_to_config] ****************************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.080)       0:00:01.659 *********** 
+ok: [localhost] => (item=master.foo.com)
+ok: [localhost] => (item=node1.foo.com)
+
+TASK [Add master to oo_nodes_to_config] ***********************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.101)       0:00:01.761 *********** 
+skipping: [localhost] => (item=master.foo.com) 
+
+TASK [Evaluate oo_lb_to_config] *******************************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.072)       0:00:01.834 *********** 
+
+TASK [Evaluate oo_nfs_to_config] ******************************************************************************************************************
+Sunday 24 June 2018  23:39:35 -0400 (0:00:00.060)       0:00:01.894 *********** 
+
+TASK [Evaluate oo_glusterfs_to_config] ************************************************************************************************************
+Sunday 24 June 2018  23:39:36 -0400 (0:00:00.060)       0:00:01.955 *********** 
+
+TASK [Evaluate oo_etcd_to_migrate] ****************************************************************************************************************
+Sunday 24 June 2018  23:39:36 -0400 (0:00:00.064)       0:00:02.019 *********** 
+ok: [localhost] => (item=master.foo.com)
+ [WARNING]: Could not match supplied host pattern, ignoring: oo_lb_to_config
+ [WARNING]: Could not match supplied host pattern, ignoring: oo_nfs_to_config
+
+PLAY [Ensure that all non-node hosts are accessible] **********************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************************************
+Sunday 24 June 2018  23:39:36 -0400 (0:00:00.147)       0:00:02.167 *********** 
+ok: [master.foo.com]
+
+PLAY [Initialize basic host facts] ****************************************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************************************
+Sunday 24 June 2018  23:39:39 -0400 (0:00:02.974)       0:00:05.141 *********** 
+ok: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : include_tasks] ***********************************************************************************************
+Sunday 24 June 2018  23:39:40 -0400 (0:00:01.576)       0:00:06.718 *********** 
+included: /vagrant/openshift-ansible/roles/openshift_sanitize_inventory/tasks/deprecations.yml for master.foo.com, node1.foo.com
+
+TASK [openshift_sanitize_inventory : Check for usage of deprecated variables] *********************************************************************
+Sunday 24 June 2018  23:39:41 -0400 (0:00:00.392)       0:00:07.111 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : debug] *******************************************************************************************************
+Sunday 24 June 2018  23:39:41 -0400 (0:00:00.371)       0:00:07.482 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : set_stats] ***************************************************************************************************
+Sunday 24 June 2018  23:39:41 -0400 (0:00:00.177)       0:00:07.660 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Assign deprecated variables to correct counterparts] *********************************************************
+Sunday 24 June 2018  23:39:41 -0400 (0:00:00.184)       0:00:07.845 *********** 
+included: /vagrant/openshift-ansible/roles/openshift_sanitize_inventory/tasks/__deprecations_logging.yml for master.foo.com, node1.foo.com
+included: /vagrant/openshift-ansible/roles/openshift_sanitize_inventory/tasks/__deprecations_metrics.yml for master.foo.com, node1.foo.com
+
+TASK [openshift_sanitize_inventory : conditional_set_fact] ****************************************************************************************
+Sunday 24 June 2018  23:39:42 -0400 (0:00:00.503)       0:00:08.348 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : set_fact] ****************************************************************************************************
+Sunday 24 June 2018  23:39:42 -0400 (0:00:00.374)       0:00:08.722 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : conditional_set_fact] ****************************************************************************************
+Sunday 24 June 2018  23:39:43 -0400 (0:00:00.291)       0:00:09.013 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Standardize on latest variable names] ************************************************************************
+Sunday 24 June 2018  23:39:43 -0400 (0:00:00.413)       0:00:09.426 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Normalize openshift_release] *********************************************************************************
+Sunday 24 June 2018  23:39:43 -0400 (0:00:00.231)       0:00:09.658 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Abort when openshift_release is invalid] *********************************************************************
+Sunday 24 June 2018  23:39:43 -0400 (0:00:00.184)       0:00:09.843 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : include_tasks] ***********************************************************************************************
+Sunday 24 June 2018  23:39:44 -0400 (0:00:00.171)       0:00:10.015 *********** 
+included: /vagrant/openshift-ansible/roles/openshift_sanitize_inventory/tasks/unsupported.yml for master.foo.com, node1.foo.com
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_use_dnsmasq is true] *******************************************************************
+Sunday 24 June 2018  23:39:44 -0400 (0:00:00.442)       0:00:10.457 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Ensure that openshift_node_dnsmasq_install_network_manager_hook is true] *************************************
+Sunday 24 June 2018  23:39:44 -0400 (0:00:00.201)       0:00:10.659 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : set_fact] ****************************************************************************************************
+Sunday 24 June 2018  23:39:44 -0400 (0:00:00.182)       0:00:10.842 *********** 
+
+TASK [openshift_sanitize_inventory : Ensure that dynamic provisioning is set if using dynamic storage] ********************************************
+Sunday 24 June 2018  23:39:45 -0400 (0:00:00.305)       0:00:11.147 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Ensure the hosted registry's GlusterFS storage is configured correctly] **************************************
+Sunday 24 June 2018  23:39:45 -0400 (0:00:00.245)       0:00:11.393 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Ensure the hosted registry's GlusterFS storage is configured correctly] **************************************
+Sunday 24 June 2018  23:39:45 -0400 (0:00:00.234)       0:00:11.627 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Ensure clusterid is set along with the cloudprovider] ********************************************************
+Sunday 24 June 2018  23:39:45 -0400 (0:00:00.238)       0:00:11.865 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Ensure ansible_service_broker_remove and ansible_service_broker_install are mutually exclusive] **************
+Sunday 24 June 2018  23:39:46 -0400 (0:00:00.197)       0:00:12.063 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Ensure template_service_broker_remove and template_service_broker_install are mutually exclusive] ************
+Sunday 24 June 2018  23:39:46 -0400 (0:00:00.224)       0:00:12.288 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Ensure that all requires vsphere configuration variables are set] ********************************************
+Sunday 24 June 2018  23:39:46 -0400 (0:00:00.224)       0:00:12.513 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Ensure removed web console extension variables are not set] **************************************************
+Sunday 24 June 2018  23:39:46 -0400 (0:00:00.183)       0:00:12.696 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : Ensure that web console port matches API server port] ********************************************************
+Sunday 24 June 2018  23:39:46 -0400 (0:00:00.187)       0:00:12.883 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_sanitize_inventory : At least one master is schedulable] **************************************************************************
+Sunday 24 June 2018  23:39:47 -0400 (0:00:00.185)       0:00:13.069 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [Detecting Operating System from ostree_booted] **********************************************************************************************
+Sunday 24 June 2018  23:39:47 -0400 (0:00:00.427)       0:00:13.496 *********** 
+ok: [node1.foo.com]
+ok: [master.foo.com]
+
+TASK [set openshift_deployment_type if unset] *****************************************************************************************************
+Sunday 24 June 2018  23:39:48 -0400 (0:00:00.736)       0:00:14.232 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [initialize_facts set fact openshift_is_atomic and openshift_is_containerized] ***************************************************************
+Sunday 24 June 2018  23:39:48 -0400 (0:00:00.218)       0:00:14.451 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+TASK [Set use_crio to True if cri-o rpm is requested] *********************************************************************************************
+Sunday 24 June 2018  23:39:48 -0400 (0:00:00.233)       0:00:14.684 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [Determine Atomic Host Docker Version] *******************************************************************************************************
+Sunday 24 June 2018  23:39:48 -0400 (0:00:00.183)       0:00:14.868 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [assert atomic host docker version is 1.12 or later] *****************************************************************************************
+Sunday 24 June 2018  23:39:49 -0400 (0:00:00.174)       0:00:15.042 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+PLAY [Initialize special first-master variables] **************************************************************************************************
+
+TASK [stat] ***************************************************************************************************************************************
+Sunday 24 June 2018  23:39:49 -0400 (0:00:00.179)       0:00:15.222 *********** 
+ok: [master.foo.com]
+
+TASK [slurp] **************************************************************************************************************************************
+Sunday 24 June 2018  23:39:49 -0400 (0:00:00.482)       0:00:15.704 *********** 
+skipping: [master.foo.com]
+
+TASK [set_fact] ***********************************************************************************************************************************
+Sunday 24 June 2018  23:39:49 -0400 (0:00:00.164)       0:00:15.868 *********** 
+skipping: [master.foo.com]
+
+TASK [set_fact] ***********************************************************************************************************************************
+Sunday 24 June 2018  23:39:50 -0400 (0:00:00.132)       0:00:16.001 *********** 
+ok: [master.foo.com]
+
+PLAY [Disable web console if required] ************************************************************************************************************
+
+TASK [set_fact] ***********************************************************************************************************************************
+Sunday 24 June 2018  23:39:50 -0400 (0:00:00.182)       0:00:16.183 *********** 
+skipping: [master.foo.com]
+
+PLAY [Install packages necessary for installer] ***************************************************************************************************
+
+TASK [Ensure openshift-ansible installer package deps are installed] ******************************************************************************
+Sunday 24 June 2018  23:39:50 -0400 (0:00:00.170)       0:00:16.354 *********** 
+ok: [node1.foo.com] => (item=iproute)
+ok: [master.foo.com] => (item=iproute)
+ok: [node1.foo.com] => (item=dbus-python)
+ok: [master.foo.com] => (item=dbus-python)
+ok: [node1.foo.com] => (item=PyYAML)
+ok: [master.foo.com] => (item=PyYAML)
+ok: [node1.foo.com] => (item=python-ipaddress)
+ok: [master.foo.com] => (item=python-ipaddress)
+ok: [node1.foo.com] => (item=yum-utils)
+ok: [master.foo.com] => (item=yum-utils)
+
+TASK [Ensure various deps for running system containers are installed] ****************************************************************************
+Sunday 24 June 2018  23:40:47 -0400 (0:00:57.173)       0:01:13.527 *********** 
+skipping: [master.foo.com] => (item=atomic) 
+skipping: [master.foo.com] => (item=ostree) 
+skipping: [node1.foo.com] => (item=atomic) 
+skipping: [master.foo.com] => (item=runc) 
+skipping: [node1.foo.com] => (item=ostree) 
+skipping: [node1.foo.com] => (item=runc) 
+
+PLAY [Initialize cluster facts] *******************************************************************************************************************
+
+TASK [Gather Cluster facts] ***********************************************************************************************************************
+Sunday 24 June 2018  23:40:47 -0400 (0:00:00.358)       0:01:13.886 *********** 
+ok: [node1.foo.com]
+changed: [master.foo.com]
+
+TASK [Set fact of no_proxy_internal_hostnames] ****************************************************************************************************
+Sunday 24 June 2018  23:40:49 -0400 (0:00:01.965)       0:01:15.852 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [Initialize openshift.node.sdn_mtu] **********************************************************************************************************
+Sunday 24 June 2018  23:40:50 -0400 (0:00:00.237)       0:01:16.089 *********** 
+ok: [node1.foo.com]
+changed: [master.foo.com]
+
+PLAY [Initialize etcd host variables] *************************************************************************************************************
+
+TASK [set_fact] ***********************************************************************************************************************************
+Sunday 24 June 2018  23:40:51 -0400 (0:00:01.423)       0:01:17.513 *********** 
+ok: [master.foo.com]
+
+TASK [set_fact] ***********************************************************************************************************************************
+Sunday 24 June 2018  23:40:51 -0400 (0:00:00.331)       0:01:17.844 *********** 
+ok: [master.foo.com]
+
+PLAY [Determine openshift_version to configure on first master] ***********************************************************************************
+
+TASK [include_role] *******************************************************************************************************************************
+Sunday 24 June 2018  23:40:52 -0400 (0:00:00.177)       0:01:18.022 *********** 
+skipping: [master.foo.com]
+
+PLAY [Set openshift_version for etcd, node, and master hosts] *************************************************************************************
+skipping: no hosts matched
+
+PLAY [Ensure the requested version packages are available.] ***************************************************************************************
+skipping: no hosts matched
+
+PLAY [Verify Requirements] ************************************************************************************************************************
+
+TASK [Run variable sanity checks] *****************************************************************************************************************
+Sunday 24 June 2018  23:40:52 -0400 (0:00:00.150)       0:01:18.173 *********** 
+ok: [master.foo.com]
+
+PLAY [Initialization Checkpoint End] **************************************************************************************************************
+
+TASK [Set install initialization 'Complete'] ******************************************************************************************************
+Sunday 24 June 2018  23:40:54 -0400 (0:00:02.663)       0:01:20.836 *********** 
+ok: [master.foo.com]
+
+PLAY [Validate node hostnames] ********************************************************************************************************************
+
+TASK [Query DNS for IP address of master.foo.com] *************************************************************************************************
+Sunday 24 June 2018  23:40:55 -0400 (0:00:00.251)       0:01:21.088 *********** 
+ok: [node1.foo.com]
+ok: [master.foo.com]
+
+TASK [Validate openshift_hostname when defined] ***************************************************************************************************
+Sunday 24 June 2018  23:40:55 -0400 (0:00:00.747)       0:01:21.835 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [Validate openshift_ip exists on node when defined] ******************************************************************************************
+Sunday 24 June 2018  23:40:56 -0400 (0:00:00.201)       0:01:22.037 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+PLAY [Setup yum repositories for all hosts] *******************************************************************************************************
+
+TASK [rhel_subscribe : fail] **********************************************************************************************************************
+Sunday 24 June 2018  23:40:56 -0400 (0:00:00.275)       0:01:22.312 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [rhel_subscribe : Install Red Hat Subscription manager] **************************************************************************************
+Sunday 24 June 2018  23:40:56 -0400 (0:00:00.199)       0:01:22.512 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [rhel_subscribe : Is host already registered?] ***********************************************************************************************
+Sunday 24 June 2018  23:40:56 -0400 (0:00:00.181)       0:01:22.694 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [rhel_subscribe : Register host] *************************************************************************************************************
+Sunday 24 June 2018  23:40:56 -0400 (0:00:00.173)       0:01:22.868 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [rhel_subscribe : fail] **********************************************************************************************************************
+Sunday 24 June 2018  23:40:57 -0400 (0:00:00.194)       0:01:23.062 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [rhel_subscribe : Determine if OpenShift Pool Already Attached] ******************************************************************************
+Sunday 24 June 2018  23:40:57 -0400 (0:00:00.184)       0:01:23.247 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [rhel_subscribe : Attach to OpenShift Pool] **************************************************************************************************
+Sunday 24 June 2018  23:40:57 -0400 (0:00:00.184)       0:01:23.431 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [rhel_subscribe : include_tasks] *************************************************************************************************************
+Sunday 24 June 2018  23:40:57 -0400 (0:00:00.185)       0:01:23.616 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_repos : openshift_repos detect ostree] ********************************************************************************************
+Sunday 24 June 2018  23:40:57 -0400 (0:00:00.188)       0:01:23.805 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+TASK [openshift_repos : Ensure libselinux-python is installed] ************************************************************************************
+Sunday 24 June 2018  23:40:58 -0400 (0:00:00.634)       0:01:24.439 *********** 
+ok: [node1.foo.com]
+ok: [master.foo.com]
+
+TASK [openshift_repos : Remove openshift_additional.repo file] ************************************************************************************
+Sunday 24 June 2018  23:41:10 -0400 (0:00:11.842)       0:01:36.282 *********** 
+ok: [node1.foo.com]
+ok: [master.foo.com]
+
+TASK [openshift_repos : Create any additional repos that are defined] *****************************************************************************
+Sunday 24 June 2018  23:41:11 -0400 (0:00:00.686)       0:01:36.968 *********** 
+
+TASK [openshift_repos : include_tasks] ************************************************************************************************************
+Sunday 24 June 2018  23:41:11 -0400 (0:00:00.181)       0:01:37.149 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [openshift_repos : include_tasks] ************************************************************************************************************
+Sunday 24 June 2018  23:41:11 -0400 (0:00:00.190)       0:01:37.340 *********** 
+included: /vagrant/openshift-ansible/roles/openshift_repos/tasks/centos_repos.yml for master.foo.com, node1.foo.com
+
+TASK [openshift_repos : Configure origin gpg keys] ************************************************************************************************
+Sunday 24 June 2018  23:41:11 -0400 (0:00:00.377)       0:01:37.717 *********** 
+ok: [node1.foo.com]
+changed: [master.foo.com]
+
+TASK [openshift_repos : Configure correct origin release repository] ******************************************************************************
+Sunday 24 June 2018  23:41:13 -0400 (0:00:01.509)       0:01:39.226 *********** 
+ok: [node1.foo.com] => (item=/vagrant/openshift-ansible/roles/openshift_repos/templates/CentOS-OpenShift-Origin.repo.j2)
+changed: [master.foo.com] => (item=/vagrant/openshift-ansible/roles/openshift_repos/templates/CentOS-OpenShift-Origin.repo.j2)
+
+TASK [openshift_repos : Ensure clean repo cache in the event repos have been changed manually] ****************************************************
+Sunday 24 June 2018  23:41:14 -0400 (0:00:01.137)       0:01:40.364 *********** 
+changed: [master.foo.com] => {
+    "msg": "First run of openshift_repos"
+}
+changed: [node1.foo.com] => {
+    "msg": "First run of openshift_repos"
+}
+
+TASK [openshift_repos : Record that openshift_repos already ran] **********************************************************************************
+Sunday 24 June 2018  23:41:14 -0400 (0:00:00.251)       0:01:40.616 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+RUNNING HANDLER [openshift_repos : refresh cache] *************************************************************************************************
+Sunday 24 June 2018  23:41:14 -0400 (0:00:00.154)       0:01:40.771 *********** 
+changed: [node1.foo.com]
+changed: [master.foo.com]
+
+PLAY [Configure os_firewall] **********************************************************************************************************************
+
+TASK [os_firewall : Detecting Atomic Host Operating System] ***************************************************************************************
+Sunday 24 June 2018  23:41:19 -0400 (0:00:05.066)       0:01:45.837 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+TASK [os_firewall : Set fact r_os_firewall_is_atomic] *********************************************************************************************
+Sunday 24 June 2018  23:41:20 -0400 (0:00:00.508)       0:01:46.346 *********** 
+ok: [master.foo.com]
+ok: [node1.foo.com]
+
+TASK [os_firewall : include_tasks] ****************************************************************************************************************
+Sunday 24 June 2018  23:41:20 -0400 (0:00:00.226)       0:01:46.573 *********** 
+skipping: [master.foo.com]
+skipping: [node1.foo.com]
+
+TASK [os_firewall : include_tasks] ****************************************************************************************************************
+Sunday 24 June 2018  23:41:20 -0400 (0:00:00.215)       0:01:46.789 *********** 
+included: /vagrant/openshift-ansible/roles/os_firewall/tasks/iptables.yml for master.foo.com, node1.foo.com
+
+TASK [os_firewall : Ensure firewalld service is not enabled] **************************************************************************************
+Sunday 24 June 2018  23:41:21 -0400 (0:00:00.391)       0:01:47.180 *********** 
+ok: [node1.foo.com]
+changed: [master.foo.com]
+
+TASK [os_firewall : Wait 10 seconds after disabling firewalld] ************************************************************************************
+Sunday 24 June 2018  23:41:24 -0400 (0:00:02.919)       0:01:50.100 *********** 
+Pausing for 10 seconds
+(ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: error: (25, 'Inappropriate ioctl for device')
+fatal: [master.foo.com]: FAILED! => {"msg": "Unexpected failure during module execution.", "stdout": ""}
+
+NO MORE HOSTS LEFT ********************************************************************************************************************************
+
+PLAY RECAP ****************************************************************************************************************************************
+localhost                  : ok=11   changed=0    unreachable=0    failed=0   
+master.foo.com             : ok=36   changed=7    unreachable=0    failed=1   
+node1.foo.com              : ok=29   changed=2    unreachable=0    failed=0   
+
+
+INSTALLER STATUS **********************************************************************************************************************************
+Initialization             : Complete (0:01:20)
+
+Sunday 24 June 2018  23:41:24 -0400 (0:00:00.099)       0:01:50.200 *********** 
+=============================================================================== 
+Ensure openshift-ansible installer package deps are installed ----------------------------------------------------------------------------- 57.17s
+openshift_repos : Ensure libselinux-python is installed ----------------------------------------------------------------------------------- 11.84s
+openshift_repos : refresh cache ------------------------------------------------------------------------------------------------------------ 5.07s
+Gathering Facts ---------------------------------------------------------------------------------------------------------------------------- 2.97s
+os_firewall : Ensure firewalld service is not enabled -------------------------------------------------------------------------------------- 2.92s
+Run variable sanity checks ----------------------------------------------------------------------------------------------------------------- 2.66s
+Gather Cluster facts ----------------------------------------------------------------------------------------------------------------------- 1.97s
+Gathering Facts ---------------------------------------------------------------------------------------------------------------------------- 1.58s
+openshift_repos : Configure origin gpg keys ------------------------------------------------------------------------------------------------ 1.51s
+Initialize openshift.node.sdn_mtu ---------------------------------------------------------------------------------------------------------- 1.42s
+openshift_repos : Configure correct origin release repository ------------------------------------------------------------------------------ 1.14s
+Query DNS for IP address of master.foo.com ------------------------------------------------------------------------------------------------- 0.75s
+Detecting Operating System from ostree_booted ---------------------------------------------------------------------------------------------- 0.74s
+openshift_repos : Remove openshift_additional.repo file ------------------------------------------------------------------------------------ 0.69s
+openshift_repos : openshift_repos detect ostree -------------------------------------------------------------------------------------------- 0.63s
+os_firewall : Detecting Atomic Host Operating System --------------------------------------------------------------------------------------- 0.51s
+openshift_sanitize_inventory : Assign deprecated variables to correct counterparts --------------------------------------------------------- 0.50s
+stat --------------------------------------------------------------------------------------------------------------------------------------- 0.48s
+openshift_sanitize_inventory : include_tasks ----------------------------------------------------------------------------------------------- 0.44s
+openshift_sanitize_inventory : At least one master is schedulable -------------------------------------------------------------------------- 0.43s
