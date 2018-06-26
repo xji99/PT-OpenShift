@@ -3,6 +3,7 @@
 masters
 nodes
 etcd
+nfs
 
 # Set variables common for all OSEv3 hosts
 [OSEv3:vars]
@@ -29,6 +30,15 @@ openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 
 
 template_service_broker_selector={"region": "infra"}
 
+openshift_hosted_etcd_storage_kind=nfs
+openshift_hosted_etcd_storage_nfs_options="*(rw,root_squash,sync,no_wdelay)"
+openshift_hosted_etcd_storage_nfs_directory=/opt/osev3-etcd 
+openshift_hosted_etcd_storage_volume_name=etcd-vol2 
+openshift_hosted_etcd_storage_access_modes=["ReadWriteOnce"]
+openshift_hosted_etcd_storage_volume_size=1G
+openshift_hosted_etcd_storage_labels={'storage': 'etcd'}
+
+
 # host group for masters
 [masters]
 master.foo.com openshift_ip=192.168.3.100 
@@ -46,3 +56,7 @@ node1.foo.com openshift_ip=192.168.3.101 openshift_node_labels="{'region': 'infr
 #node2.foo.com openshift_node_labels="{'region': 'primary', 'zone': 'west'}"
 #infra-node1.foo.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 #infra-node2.foo.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+
+
+[nfs]
+master.foo.com
