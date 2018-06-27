@@ -1,3 +1,4 @@
 .vagrant
 openshift-ansible
 control.pub
+*.log
