@@ -26,6 +26,27 @@ A custom redhat 7.5 VM with developer subscription is built as Vagrant template 
 
 * checkout git repository
 
+
+* Redhat Linux: Version 7.5. It is latest developer version. 
+  A redhat virtual box machine is first installed and configured, then exported as Vagrant box 
+  for Vagrant auto provision.
+
+* Redhat OpenShift origin: latest version from github distribution.
+
+* Vagrant: version  2.1.1 with hostManager plugin
+
+* Ansible: verision 2.5.5
+
+The system contains one ofinstall latest version of 
+Redhat OpenShift Origin on Redhat linux. The redhat box is a developer
+
+## Custom build vagrant redhat 7.5 box
+
+
+## Cluster Deploy steps
+
+* checkout git repository
+
 * Then execute following command to bring all nodes up
 
 ```
@@ -64,6 +85,7 @@ take over the DNS setup. A shell script to fix this is supplied to deal with thi
 
 
 # Cluster Verification
+
 ### couple commands to verify health status
 ```
 oc version
