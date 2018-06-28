@@ -26,7 +26,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "master" do |h|
     h.vm.hostname = "master.foo.com"
     h.vm.network "private_network", ip: "192.168.3.100"
-    h.vm.network "forwarded_port", guest: 8443, host: 8443, host_ip: "127.0.0.1"
+#    h.vm.network "forwarded_port", guest: 8443, host: 8443, host_ip: "127.0.0.1"
+    h.vm.network "forwarded_port", guest: 8443, host: 8443, host_ip: "172.16.0.31"
     h.vm.provision :shell, path: "master.sh"
     h.vm.provider :virtualbox do |vb|
          vb.customize ["modifyvm", :id, "--memory", "8096"]
