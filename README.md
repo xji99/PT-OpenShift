@@ -14,8 +14,9 @@ and the other two are openshift nodes.
 
 * Ansible: verision 2.5.5
 
-The system contains one ofinstall latest version of 
-Redhat OpenShift Origin on Redhat linux. The redhat box is a developer
+* Virtualbox: 5.2.12
+
+* Host machine: Developed and tested on three Unbuntu 16.04 LTS boxes. (with 48Gb, 32Gb, 96GB memory respectively), windows 10 Enterprise (32 GB memory).
 
 # Custom build vagrant redhat 7.5 box
 
