@@ -8,13 +8,12 @@
 # This should put you at the control host
 #  with access, by name, to other vms
 Vagrant.configure(2) do |config|
-  config.hostmanager.enabled = true
+  config.hostmanager.enabled = false 
   config.vm.box = "xji/rhel7.5"
   config.ssh.insert_key = false
 
   config.vm.define "controlbox", primary: true do |h|
     h.vm.hostname = "controlbox.foo.com"
-#    h.vm.network "forwarded_port", guest: 8443, host: 8443
     h.vm.network "private_network", ip: "192.168.3.10"
     h.vm.provision :shell, path: "control.sh"
     h.vm.provider :virtualbox do |vb|

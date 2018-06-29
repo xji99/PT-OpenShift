@@ -51,5 +51,7 @@ service named restart
 iptables -A INPUT -p tcp --dport 53 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 iptables -I INPUT -p udp --dport 53 -j ACCEPT
 service iptables save
+systemctl enable iptables.service
+systemctl enable named.service
 
 ## end configure DNS
