@@ -78,12 +78,20 @@ curl -k https://localhost:8443/
 
 ```
 ## Webconsole login
-The system is set up with htpassword authentication
-A tester/tester user account is provisioned.
-To access webconsol from host:
+
+### Adding a test user
+
+The system is set up with htpassword authentication. To create a user:
+first log in to master node, then execute:
+```
+htpasswd /etc/origin/master/htpasswd USERNAME
+```
+After while, the user will be provisioned without restart server or services.
+
+To access openshift webconsol from host machine:
 
 ```
-https://vmhost:port/
+https://hostip:8443/
 ```
 
 

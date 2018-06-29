@@ -8,7 +8,7 @@
 # This should put you at the control host
 #  with access, by name, to other vms
 Vagrant.configure(2) do |config|
-  config.hostmanager.enabled = false 
+  config.hostmanager.enabled = true
   config.vm.box = "xji/rhel7.5"
   config.ssh.insert_key = false
 
