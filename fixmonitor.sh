@@ -14,3 +14,4 @@ do
 done
 
 touch /etc/origin/node/resolv.conf
+echo "job done"

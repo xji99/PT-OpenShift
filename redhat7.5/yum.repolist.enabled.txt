@@ -1,0 +1,9 @@
+Loaded plugins: langpacks, product-id, search-disabled-repos, subscription-
+              : manager
+repo id                                     repo name                     status
+!epel/x86_64                                Extra Packages for Enterprise 12,590
+!rhel-7-server-optional-rpms/7Server/x86_64 Red Hat Enterprise Linux 7 Se 15,120
+!rhel-7-server-rpms/7Server/x86_64          Red Hat Enterprise Linux 7 Se 20,503
+!rhel-7-server-rt-rpms/7Server/x86_64       Red Hat Enterprise Linux for     302
+!rhel-server-rhscl-7-rpms/7Server/x86_64    Red Hat Software Collections  10,065
+repolist: 58,580

@@ -31,6 +31,7 @@ Most of the prerequsite and rpm repository are configured for this project.
 
 ```
 cd PT_OpenShift
+tar -xzvf  openshift-ansible.tgz
 vagrant up
 ```
 * Go into ansible control node and deploy openshift
@@ -54,16 +55,19 @@ roles/openshift_service_catalog/tasks/start_api_server.yml
 roles/template_service_broker/tasks/deploy.yml
 ```
 
-## Openshift requires DNS to be fully functional
-This impose a challeng in Vagrant setup, since Vagrant want to have its own DNS server 
-so it can handle the nodes it managed.
+## DNS problem
+Openshift requires DNS to be fully functional and requires usage of Linux NetworkManager to handle the network configuration.
+While vagrant also want its own DNS proxy setup. This caused deployCluster to fail. 
 
-## Openshift requires Linux Network manager to configure network
-This causes problem during cluster deployment since in Vagrant env, we have to forcefully
-take over the DNS setup. A shell script to fix this is supplied to deal with this situation.
+As a quick workaround, during deployCluster playbook run:
+```
+vagrant ssh master
+sudo /vagrant/fixmonitor.sh
 
+vagrant ssh node1
+sudo /vagrant/fixmonitor.sh
 
-
+```
 # Cluster Verification
 
 ## couple commands to verify health status
@@ -88,10 +92,10 @@ htpasswd /etc/origin/master/htpasswd USERNAME
 ```
 After while, the user will be provisioned without restart server or services.
 
-To access openshift webconsol from host machine:
+You also need to temporarily add an entry to host machine's hosts file to point to master.foo.com to your host ip address.
+After that, open browser and access openshift webconsol from host machine:
 
 ```
-https://hostip:8443/
+https://host:8443/
 ```
-
 
